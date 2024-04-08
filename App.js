@@ -1,7 +1,7 @@
 // SERVE PARA CRIAR UM COMPONENTE NO REACT NATIVE
 
 import React, { Component } from "react";
-import { View, Text, StyleSheet, TextInput } from "react-native";
+import { View, Text, StyleSheet, TextInput, Button } from "react-native";
 
 
 // const nome = 'Gustavo'  
@@ -11,22 +11,20 @@ class App extends Component {
     super(props)
     this.state = {
       nome: '',
+      input: ''
     }
-    this.pegaNome = this.pegaNome.bind(this)
+    this.entrar = this.entrar.bind(this)
   }
 
-  pegaNome = (text) => {
-    if (text.length > 0) {
-      this.setState({
-        nome: 'Bem Vindo: ' + text
-      })
+  entrar(){
+    if(this.state.input === ''){
+      alert('digite seu nome')
+      return
     }
-    else {
-      this.setState({
-        nome: ''
-      })
-    }
-
+    this.setState({
+      nome: 'Bem Vindo: ' + this.state.input
+    })
+  
   }
 
   render() {
@@ -35,8 +33,9 @@ class App extends Component {
         <TextInput style={styles.input}
           placeholder="digite seu nome"
           underlineColorAndroid="transparent"
-          onChangeText={this.pegaNome}
+          onChangeText={(texto) => this.setState({ input: texto })}
         />
+        <Button title="entrar" onPress={this.entrar} />
         <Text style={styles.name}>{this.state.nome}</Text>
       </View>
     )
