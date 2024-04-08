@@ -1,0 +1,54 @@
+<!-- * ARQUIVO APP.JS -->
+<!-- ?aprendemos sobre props e component  -->
+
+CRIAMOS UM COMPONENT JOBS NO MESMO ARQUIVO 
+PRECISA TER ESSE RENDER
+E DPS RETURN NO CASO É O JSX QUE VAI MOSTRAR NA TELA
+
+<!-- &USAMOS UMA VIEW PORQUE TEMOS DOIS COMPONENTS DENTRO IMAGE E Text  -->
+<!-- 
+    &DEPOIS USAMOS A PROPRIEDADE PROPS 
+    ~PODEMOS ANALISAR NA IMAGE AONDE TEM O STYLE COLOCAMOS O WIDTH E DEPOIS IREMOS USAR A PROPS PARA DAR O NOME AO WIDTH
+    ~E TAMBEM USAMOS DENTRO DO TEXT PRA DEIXAR DINAMICO TAMBÉM 
+-->
+
+class Jobs extends Component {
+  render() {
+    return (
+      <View>
+        <Image source={{ uri: 'https://sujeitoprogramador.com/steve.png' }} style={{ width: this.props.largura, height: this.props.altura }} />
+        <Text>{this.props.fulano}</Text>
+       
+      </View>
+    );
+  }
+}
+
+<!-- ? NESSA PARTE DE BAIXO IREMOS CHAMAR O COMPONENTS Jobs 
+     ? e passar a props que fizemos ali em cima na image e no text -->
+
+class App extends Component {
+    render() {
+
+        let nome = 'GUERREIRO'
+        return (
+        <View style={styles.container}>
+            <!--
+                &NESSA PARTE DO <Text>{nome}</Text>
+                !ESSE {NOME} NAO TEM NADA VER COM A PROPS
+              -->
+            <Text>{nome}</Text>
+            <Jobs largura={100} altura={200} fulano={'Fulano'} /> 
+            <!-- 
+                &AQUI IMPORTAMOS O COMPONENT JOBS QUE FIZEMOS ALI EM CIMA
+                &PASSAMOS A LARGURA E A ALTURA PORQUE USAMOS O THIS.PROPS.ALTURA THIS.PROPS.LARGURA NA IMAGE
+                &E TAMBEM NO TEXT USAMOS FULANO THIS.PROPS.FULANO  -->
+        </View>
+        );
+    }
+}
+
+<!-- * END ARQUIVO APP.JS PROPS E COMPONENT -->
+
+state
+onpress
