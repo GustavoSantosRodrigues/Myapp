@@ -1,123 +1,65 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, TextInput, Button, Image, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 
 class App extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-     numero: 0,
-     botao: 'VAI',
-     ultimo: null
-    }
-
-    this.timer = null;
-    this.vai = this.vai.bind(this);
-    this.parar = this.parar.bind(this);
-    this.limpar = this.limpar.bind(this);
-  }
-
   
-
-  vai() {
-    if(this.timer != null) {
-      clearInterval(this.timer);
-      this.timer = null;
-      this.setState({ botao: 'VAI' });
-    }
-    else {
-      this.timer = setInterval(() => {
-        this.setState({ numero: this.state.numero + 0.1 });
-      }, 100);
-    }
-
-    if(this.state.botao === 'VAI') {
-      this.setState({ botao: 'PARAR' });
-    }
-    else {
-      this.setState({ botao: 'VAI' });
-    }
-  }
-
-  parar() {
-    
-  }
-  
-  limpar() {
-    if(this.timer != null) {
-      clearInterval(this.timer);
-      this.timer = null;
-    }
-    this.setState({ numero: 0, botao: 'VAI', ultimo: this.state.numero });
-  }
-
-
   render() {
     return (
       <View style={styles.container} >
-        <Image source={require('./src/cronometro.png')} style={{ width: 250, height: 250 }} />
-        <Text style={styles.timer}>{this.state.numero.toFixed(2)}</Text>
 
-        <View style={styles.btnArea}>
-          <TouchableOpacity style={styles.btn} onPress={this.vai}>
-            <Text style={styles.btnText}>{this.state.botao}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.btn} onPress={this.limpar}>
-            <Text style={styles.btnText}>LIMPAR</Text>
-          </TouchableOpacity>
-        </View>
+        {/*
+          n aparece a barra de rolagem vertical 
+          showsVerticalScrollIndicator={false}
 
-        <View style={styles.areaUltimo}>
-            <Text style={styles.ultimo}>
-              {this.state.ultimo != null ? 'ULTIMO: ' + this.state.ultimo.toFixed(2) + 's' : ''}
-            </Text>
-          </View>
+          fica igual os stories do instagram,
+          passando para o lado
+          horizontal={true}
+
+         */}
+        <ScrollView horizontal={true}>
+          <View style={styles.box1}></View>
+          <View style={styles.box2}></View>
+          <View style={styles.box3}></View>
+          <View style={styles.box4}></View>
+        </ScrollView>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#ddd',
-    alignItems: 'center',
-    justifyContent: 'center',
+  // container: {
+  //   flex: 1,
+  //   backgroundColor: '#ddd',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  // },
+
+
+  box1: {
+    width: 400,
+    height: 250,
+    backgroundColor: 'red',
   },
 
-  timer: {
-    marginTop: -150,
-    fontSize: 45,
-    fontWeight: 'bold',
+  box2: {
+    width: 400,
+    height: 250,
+    backgroundColor: 'green',
   },
 
-  btnArea: {
-    flexDirection: 'row',
-    marginTop: 100,
-    padding: 30,
+  box3: {
+    width: 400,
+    height: 250,
+    backgroundColor: 'blue',
   },
 
-
-  btnText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#FFF',
-    marginLeft: 10,
-    marginRight: 10,
-    backgroundColor: '#000',
-    padding: 10,
-    borderRadius: 5,
-  },
-
-  areaUltimo: {
-    marginTop: 20,
-  },
-
-  ultimo: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#000',
+  box4: {
+    width: 400,
+    height: 250,
+    backgroundColor: 'yellow',
   }
+
 })
 
 export default App
