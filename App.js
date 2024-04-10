@@ -31,7 +31,12 @@ class App extends Component {
       }, 100);
     }
 
-    this.setState({ botao: 'PARAR' });
+    if(this.state.botao === 'VAI') {
+      this.setState({ botao: 'PARAR' });
+    }
+    else {
+      this.setState({ botao: 'VAI' });
+    }
   }
 
   parar() {
@@ -67,7 +72,6 @@ class App extends Component {
               {this.state.ultimo != null ? 'ULTIMO: ' + this.state.ultimo.toFixed(2) + 's' : ''}
             </Text>
           </View>
-
       </View>
     )
   }
