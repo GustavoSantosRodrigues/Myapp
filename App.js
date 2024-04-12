@@ -1,65 +1,109 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, FlatList, SafeAreaView } from "react-native";
 
 class App extends Component {
-  
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      feed: [
+        {
+          id: 1,
+          nome: 'Guilherme',
+          idade: 18,
+          email: 'Kp5v3@example.com',
+        },
+        {
+          id: 3,
+          nome: 'Gustavo',
+          idade: 18,
+          email: 'gustavo@.com',
+        },
+        {
+          id: 4,
+          nome: 'Pedro',
+          idade: 18,
+          email: 'pedro@.com',
+        },
+        {
+          id: 5,
+          nome: 'Maria',
+          idade: 18,
+          email: 'maria@.com',
+        },
+        {
+          id: 6,
+          nome: 'Lucas',
+          idade: 18,
+          email: 'lucas@.com',
+        },
+      ]
+    }
+  }
+
   render() {
     return (
       <View style={styles.container} >
+        {/* 
+            data é obrigatorio passar
+            e o renderItem tbm  
+        */}
 
-        {/*
-          n aparece a barra de rolagem vertical 
-          showsVerticalScrollIndicator={false}
+        <SafeAreaView >
+          <FlatList style={styles.feed} data={this.state.feed}
+           KeyExtractor={(item) => item.id}
+            renderItem={
+              ({ item }) =>   
+              <Pessoa data={item} />
+            } />
+           
+        </SafeAreaView>
 
-          fica igual os stories do instagram,
-          passando para o lado
-          horizontal={true}
+      </View>
+    )
+  }
+}
 
-         */}
-        <ScrollView horizontal={true}>
-          <View style={styles.box1}></View>
-          <View style={styles.box2}></View>
-          <View style={styles.box3}></View>
-          <View style={styles.box4}></View>
-        </ScrollView>
+class Pessoa extends Component {
+
+  render() {
+    return (
+      <View style={styles.containerPessoa}>
+        <Text style={styles.nome}>Nome: {this.props.data.nome}</Text>
+        <Text style={styles.idade}>Idade: {this.props.data.idade}</Text>
+        <Text style={styles.email}>Email: {this.props.data.email}</Text>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   backgroundColor: '#ddd',
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  // },
-
-
-  box1: {
-    width: 400,
-    height: 250,
-    backgroundColor: 'red',
+  container: {
+    flex: 1,
+    backgroundColor: '#ddd',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
-  box2: {
-    width: 400,
-    height: 250,
-    backgroundColor: 'green',
+  nome: {
+    fontSize: 20
   },
 
-  box3: {
-    width: 400,
-    height: 250,
-    backgroundColor: 'blue',
+  idade: {
+    fontSize: 20
   },
 
-  box4: {
-    width: 400,
-    height: 250,
-    backgroundColor: 'yellow',
+  email: {
+    fontSize: 20
+  },
+
+
+  containerPessoa: {
+    height: 200,
+    width: 300,
+    backgroundColor: '#f00',
   }
 
 })
 
-export default App
+export default App;
