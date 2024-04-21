@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, ScrollView, FlatList, SafeAreaView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, FlatList, SafeAreaView, Switch } from "react-native";
 import { Picker } from '@react-native-picker/picker';
 import Slider  from '@react-native-community/slider';
 
@@ -8,7 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      valor: 50
+      status: false
     }
   }
 
@@ -21,20 +21,17 @@ class App extends Component {
       <View style={styles.container} >
 
         <SafeAreaView>
-          <Slider 
-          minimumValue={0} 
-          maximumValue={100} 
-          onValueChange={(valorSelecionado) => { this.state({ valor: valorSelecionado }) }}
-          value={this.state.valor} 
-          minimumTrackTintColor="#f00"
-          maximumTrackTintColor="#00f"
-          />
-          
-        </SafeAreaView>
+          <Switch 
+          value={this.state.status} 
+          onValueChange={(valorSelecionado) => { this.setState({ status: valorSelecionado }) }}
+          thumbColor={'#f00'}
+           />
 
-        <Text>
-          {this.state.valor}
-        </Text>
+           <Text>
+            
+            {(this.state.status)  ? 'true' : 'false'}
+            </Text>
+        </SafeAreaView>
 
       </View>
     )
